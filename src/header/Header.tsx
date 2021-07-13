@@ -11,23 +11,31 @@ const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
     },
+    stickyHeader: {
+      position: "fixed",
+      top: 0
+    },
+    btnContained: {
+      color: "#3F51B5",
+      background: "#FFF"
+    }
   }));
   
 const Header = () => {
     const history = useHistory();
     const classes = useStyles();
     const handleLogout = () => {
-        localStorage.setItem("user", JSON.stringify({}))
+        localStorage.setItem("user",JSON.stringify({}))
         history.push("/login");
     }
     return(
         <>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.stickyHeader}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                        User List
                     </Typography>
-                    <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                    <Button color="inherit" className={classes.btnContained} variant="contained" onClick={handleLogout}>Logout</Button>
                 </Toolbar>
             </AppBar>
         </>

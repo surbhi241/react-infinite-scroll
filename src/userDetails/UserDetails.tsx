@@ -1,11 +1,14 @@
+import { Container, Grid } from "@material-ui/core";
 import React from "react";
 
 const UserDetails = () => {
     return(
         <>
-            <div>
-            User details Card will come here 
-            </div>
+            <Container>
+              <Grid>
+                  I will add data
+              </Grid>
+            </Container> 
         </>
     )
 }

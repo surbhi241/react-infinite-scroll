@@ -1,6 +1,7 @@
-import { Grid, makeStyles, Paper } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { CircularProgress, Grid, makeStyles, Paper } from "@material-ui/core";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "../axios";
+import useInfiniteScroll from "../useInfiniteScroll";
 import UserCard from "./UserCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,37 +9,46 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        marginTop: '60px',
         '& > *': {
           margin: theme.spacing(1),
           width: theme.spacing(86),
           height: "auto",
         },
       },  
-  }));
+}));
 const UserList = () => {
-    const [user, setUser] = useState<object>([]);
+    const [pageNumber , setPageNumber] = useState(1);
+    const { user, loading, error } = useInfiniteScroll(pageNumber);
     const classes = useStyles();
-    useEffect(() => {
-        axios
-            .get(`api/?results=${20}`, {})
-            .then(res => {
-                const data = res.data.results;
-                setUser(data);
-                console.log("data", data, user)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [])
+    const observer: any = useRef();
+    const cleanObserver = () => {
+        if (observer.current) {
+            observer.current.disconnect()
+        }
+    }
+    const observeNode = useCallback(node => {
+        if(loading) return;
+        cleanObserver();
+        observer.current = new IntersectionObserver(entries => {
+            if(entries[0].isIntersecting){
+                setPageNumber(prevState => prevState + 1);
+            }
+        });
+        if(node) observer.current.observe(node)
+        return () => {
+            cleanObserver();
+        }
+    }, [loading, observer])
+    
     return(
         <div className={classes.root}>  
             <Paper>
-                {user instanceof Array ? user.map((item: any) => (
-                    <div key={item.login.uuid}>
-                        <UserCard userDetails={item} />
-                    </div>
-                )): "no data present"}
-           </Paper>
+                {user instanceof Array ? user.map(item => <UserCard userDetails={item}  key={item.login.uuid} />) : <p>No Data</p>}
+                <div ref={observeNode}>
+                    <CircularProgress />
+                </div>
+            </Paper>
         </div>
     )
 }

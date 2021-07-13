@@ -1,5 +1,6 @@
 import { Button, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 interface UserDetails {
  firstName: string;
@@ -47,13 +48,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 const UserCard = (props: any) => {
+    const history = useHistory();
     const classes = useStyles();
     const { userDetails } = props;
     const { first, last } = userDetails.name;
     const { large } = userDetails.picture;
     const fullName = !isEmpty(first) && !isEmpty(last) ? `${first} ${last}` : first || last;
     const handleViewDetail = () => {
-        console.log("hanlde view");
+        history.push("user/view");
     }
     return(
         <>
