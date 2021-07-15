@@ -1,6 +1,7 @@
 import { Button, Grid, makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { DetailsDailog } from "./UserDetails";
 
 interface UserDetails {
  firstName: string;
@@ -53,10 +54,17 @@ const UserCard = (props: any) => {
     const { userDetails } = props;
     const { first, last } = userDetails.name;
     const { large } = userDetails.picture;
+    const [openDialog, setOpenDialog] = useState<Boolean>(false);
+    const [dialogDetails, setDailogDetails] = useState<object>({});
     const fullName = !isEmpty(first) && !isEmpty(last) ? `${first} ${last}` : first || last;
-    const handleViewDetail = () => {
-        history.push("user/view");
-    }
+    const handleViewDetail = React.useCallback(() => {
+        // history.push("user/view");
+        setOpenDialog(!openDialog);
+        setDailogDetails({
+            userDetails,
+            head: "User Information"
+        })
+    }, [openDialog, userDetails]);
     return(
         <>
             <Grid container className={classes.cardWrapper}>
@@ -70,6 +78,7 @@ const UserCard = (props: any) => {
                     <Button color="primary" variant="contained" size="small" onClick={handleViewDetail}>View</Button>
                 </Grid>
             </Grid>
+            <DetailsDailog dialogDetails={dialogDetails} setOpenDialog={setOpenDialog} openDialog={openDialog} />
         </>
     )
 }
