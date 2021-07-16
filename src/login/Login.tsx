@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, makeStyles, OutlinedInput, Paper } from "@material-ui/core";
+import { Button, FormControl, FormHelperText, IconButton, InputAdornment, InputLabel, makeStyles, OutlinedInput, Paper } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
       '& > *': {
         margin: theme.spacing(1),
         width: '400px',
-        height: '400px',
+        height: '300px',
+        padding: theme.spacing(3)
       }
     },
     margin: {
@@ -41,8 +42,7 @@ const Login = () => {
       });
       const handleChange = (prop: any) => (event: React.ChangeEvent<{value: string}>) => {
         const { value } = event.target; 
-        console.log("handle change", value, prop); 
-        setValues({ ...values, [prop]: event.target.value });
+        setValues({ ...values, [prop]: value });
       };
     
       const handleClickShowPassword = () => {

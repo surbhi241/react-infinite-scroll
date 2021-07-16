@@ -5,20 +5,23 @@ import { DialogTitle } from "../common/DailogTitle";
 import UserCard from "./UserCard";
 
 export const useStyles = makeStyles((theme) => createStyles({
+      dailogContainer:{
+        minWidth: theme.spacing(88),
+        color: "rgb(63, 81, 181)",
+      },
       dailogTitle: {
-        paddingTop: "20px"
+        paddingTop: "20px",
       },
       dialogHead: {
         height: "18px",
-        fontSize: "14px",
         fontWeight: 600,
         lineHeight: 1.29,
         letterSpacing: "normal",
-        color: "#32325d"
+        color: "#32325d",
+        fontSize: "18px",
       },
-      wh_16: {
-        width: "16px !important",
-        height: "16px !important"
+      dailogContent: {
+        minWidth: theme.spacing(88),
       }
 }));
 
@@ -27,19 +30,21 @@ export interface DetailsDailogProps {
   setOpenDialog: any;
   openDialog: any;
 }
-export const DetailsDailog = ({
+const DetailsDailog = ({
   dialogDetails,
   setOpenDialog,
   openDialog,
 }: DetailsDailogProps) => {
   const { head, userDetails } = dialogDetails;
   const classes = useStyles();
+  console.log("userDetails", userDetails);
   return (
     <Dialog
       onClose={() => setOpenDialog(false)}
       aria-labelledby="dialog-container"
       open={openDialog}
       test-dataid="dialog"
+      className={classes.dailogContainer}
     >
       <DialogTitle
         id="dialog-title"
@@ -48,11 +53,13 @@ export const DetailsDailog = ({
       >
         {head}
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className={classes.dailogContent}>
         <Grid container item xs={12}>
-          <UserCard userDetails={userDetails}/>
+          <UserCard userDetails={userDetails} isViewRequired={false}/>
         </Grid>
       </DialogContent>
     </Dialog>
   );
 };
+
+export default DetailsDailog;

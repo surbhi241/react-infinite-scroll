@@ -42,3 +42,11 @@ body, #root, .App{
     transform: rotate(360deg);
   }
 }
+
+.MuiDialog-scrollPaper{
+  align-items: inherit !important;
+}
+
+.MuiDialog-paperWidthSm{
+  max-width: inherit !important;
+}

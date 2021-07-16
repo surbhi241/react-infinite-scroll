@@ -27,7 +27,7 @@ const useInfiniteScroll = (pageNumber: number) => {
             setError(true);
         })
     }, [pageNumber])
-    return { user , loading, error }
+    return { user , loading, error, hasMore}
 }
 
 export default useInfiniteScroll;

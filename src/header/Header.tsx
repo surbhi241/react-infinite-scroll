@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, IconButton, Typography, Button, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, makeStyles } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const Header = () => {
     const classes = useStyles();
     const handleLogout = () => {
         localStorage.setItem("user",JSON.stringify({}))
-        history.push("/login");
+        history.push("/");
     }
     return(
         <>
