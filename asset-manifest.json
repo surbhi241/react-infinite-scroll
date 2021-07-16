@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/react-infinite-scroll/static/css/main.f15bc42f.chunk.css",
+    "main.js": "/react-infinite-scroll/static/js/main.d76052d5.chunk.js",
+    "main.js.map": "/react-infinite-scroll/static/js/main.d76052d5.chunk.js.map",
+    "runtime-main.js": "/react-infinite-scroll/static/js/runtime-main.4d5f9eb1.js",
+    "runtime-main.js.map": "/react-infinite-scroll/static/js/runtime-main.4d5f9eb1.js.map",
+    "static/js/2.566536cc.chunk.js": "/react-infinite-scroll/static/js/2.566536cc.chunk.js",
+    "static/js/2.566536cc.chunk.js.map": "/react-infinite-scroll/static/js/2.566536cc.chunk.js.map",
+    "static/js/3.dbca46cc.chunk.js": "/react-infinite-scroll/static/js/3.dbca46cc.chunk.js",
+    "static/js/3.dbca46cc.chunk.js.map": "/react-infinite-scroll/static/js/3.dbca46cc.chunk.js.map",
+    "static/js/4.9ccd030c.chunk.js": "/react-infinite-scroll/static/js/4.9ccd030c.chunk.js",
+    "static/js/4.9ccd030c.chunk.js.map": "/react-infinite-scroll/static/js/4.9ccd030c.chunk.js.map",
+    "static/js/5.2381227d.chunk.js": "/react-infinite-scroll/static/js/5.2381227d.chunk.js",
+    "static/js/5.2381227d.chunk.js.map": "/react-infinite-scroll/static/js/5.2381227d.chunk.js.map",
+    "index.html": "/react-infinite-scroll/index.html",
+    "static/css/main.f15bc42f.chunk.css.map": "/react-infinite-scroll/static/css/main.f15bc42f.chunk.css.map",
+    "static/js/2.566536cc.chunk.js.LICENSE.txt": "/react-infinite-scroll/static/js/2.566536cc.chunk.js.LICENSE.txt",
+    "static/js/3.dbca46cc.chunk.js.LICENSE.txt": "/react-infinite-scroll/static/js/3.dbca46cc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d5f9eb1.js",
+    "static/js/2.566536cc.chunk.js",
+    "static/css/main.f15bc42f.chunk.css",
+    "static/js/main.d76052d5.chunk.js"
+  ]
+}
