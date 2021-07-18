@@ -5,7 +5,7 @@ import Home from "./home/Home.tsx";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="/react-infinite-scroll">
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/home" component={Home} />
