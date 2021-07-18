@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button, CircularProgress, Grid, makeStyles } from "@material-ui/core";
 import React, { Suspense, useEffect, useState } from "react";
 import PersonalInfo from "../common/PersonalInfo";
@@ -18,7 +19,6 @@ export const useStyles = makeStyles((theme) => ({
      border: "1px solid #f2f2f2",
      display: "flex",
      justifyContent: "center",
-    //  height: "100px",
      padding: theme.spacing(1)
     },
     buttonContainer:{
@@ -44,7 +44,7 @@ export const useStyles = makeStyles((theme) => ({
         borderRadius: "50%"
     },
     userImgLarge:{
-        width: `calc(90% - 30px)`,
+        maxWidth: "200px",
         borderRadius: "3%"
     },
     userName: {
@@ -64,7 +64,7 @@ export const useStyles = makeStyles((theme) => ({
 const UserCard = (props: UserCardProps) => {
     const classes = useStyles();
     const { userDetails, isViewRequired} = props;
-    const OtherComponent = React.lazy(() => import('./UserDetails'));
+    const OtherComponent = React.lazy(() => import('./DetailsDailog'));
     const { first, last } = userDetails && userDetails.name;
     const { large } = userDetails && userDetails.picture;
     const { dob , gender, location, email, phone } = userDetails;
@@ -77,15 +77,16 @@ const UserCard = (props: UserCardProps) => {
         gender,
         email,
         phone,
-        country: location.country
+        country: location.country,
+        imgLarge: large
     }
     const handleViewDetail = React.useCallback(() => {
         setOpenDialog(!openDialog);
         setDailogDetails({
-            userDetails,
-            head: `${fullName} - Personal Information`
+            personalDetails,
+            head: "Personal Information"
         })
-    }, [openDialog, userDetails, fullName]);
+    }, [openDialog, personalDetails]);
 
     useEffect(() => {
         setOpenDialog(false);
@@ -94,13 +95,13 @@ const UserCard = (props: UserCardProps) => {
         <>
             <Grid container className={classes.cardWrapper}>
                 <Grid container justifyContent="center">
-                    <Grid item xs={6} className={isViewRequired ? classes.userDetailWrapperList : classes.userDetailWrapperDetails}>
-                        <img src={large} alt="user-img" className={isViewRequired ? classes.userImgSmall : classes.userImgLarge}/>
-                        {isViewRequired ?<Grid item xs={8} className={classes.userName}>
+                    <Grid item xs={8} sm={6} md={6} id="userDetailWrapperDetails" className={isViewRequired ? classes.userDetailWrapperList : classes.userDetailWrapperDetails}>
+                        <img src={large} alt="user-img" id="userImgLarge" loading="lazy" className={classes.userImgSmall}/>
+                        <Grid item xs={10} sm={8} md={8} className={classes.userName}>
                             {fullName}
-                        </Grid> : null}
+                        </Grid>
                     </Grid>
-                    {isViewRequired ? (<Grid item xs={6} className={classes.buttonContainer}>
+                    {isViewRequired ? (<Grid item xs={4} sm={6} md={6} className={classes.buttonContainer}>
                         <Button color="primary" variant="contained" size="small" onClick={handleViewDetail}>View</Button>
                     </Grid>) : null}
                 </Grid>

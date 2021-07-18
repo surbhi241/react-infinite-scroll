@@ -1,8 +1,8 @@
 import React from "react";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import { IconButton, Tooltip, Typography, withStyles } from "@material-ui/core";
+import { Grid, IconButton, Tooltip, Typography, withStyles } from "@material-ui/core";
 import { CloseIcon } from "./Icons";
-import { useStyles } from "../userDetails/UserDetails";
+import { useStyles } from "../userDetails/DetailsDailog";
 
 const styles = (theme: {
     spacing: {
@@ -32,20 +32,24 @@ export const DialogTitle = withStyles(styles as any)(
       const { children, classes, onClose, ...other } = props;
       return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
-          <Typography variant="h6" className={`${classNew.dialogHead}`}>
+          <Grid item xs={8}>
+            <Typography variant="h6" className={classNew.dialogHead} id="dialogHead">
             {children}
-          </Typography>
-          {onClose ? (
-            <Tooltip title={"Close"}>
-              <IconButton
-                aria-label="close"
-                className={classes.closeButton}
-                onClick={onClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Tooltip>
-          ) : null}
+            </Typography>
+          </Grid>
+          <Grid item xs={4}>
+            {onClose ? (
+              <Tooltip title={"Close"}>
+                <IconButton
+                  aria-label="close"
+                  className={classes.closeButton}
+                  onClick={onClose}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Tooltip>
+            ) : null}
+          </Grid>
         </MuiDialogTitle>
       );
     }

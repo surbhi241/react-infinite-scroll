@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createStyles, DialogContent, Grid, makeStyles } from "@material-ui/core";
+import { createStyles, DialogContent, makeStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import { DialogTitle } from "../common/DailogTitle";
-import UserCard from "./UserCard";
+import PersonalInfo from "../common/PersonalInfo";
 
 export const useStyles = makeStyles((theme) => createStyles({
       dailogContainer:{
-        minWidth: theme.spacing(88),
+        maxHeight: '87vh',
+        overflow: 'auto',
         color: "rgb(63, 81, 181)",
       },
       dailogTitle: {
@@ -20,9 +21,6 @@ export const useStyles = makeStyles((theme) => createStyles({
         color: "#32325d",
         fontSize: "18px",
       },
-      dailogContent: {
-        minWidth: theme.spacing(88),
-      }
 }));
 
 export interface DetailsDailogProps {
@@ -35,9 +33,8 @@ const DetailsDailog = ({
   setOpenDialog,
   openDialog,
 }: DetailsDailogProps) => {
-  const { head, userDetails } = dialogDetails;
+  const { head, personalDetails } = dialogDetails;
   const classes = useStyles();
-  console.log("userDetails", userDetails);
   return (
     <Dialog
       onClose={() => setOpenDialog(false)}
@@ -53,10 +50,8 @@ const DetailsDailog = ({
       >
         {head}
       </DialogTitle>
-      <DialogContent className={classes.dailogContent}>
-        <Grid container item xs={12}>
-          <UserCard userDetails={userDetails} isViewRequired={false}/>
-        </Grid>
+      <DialogContent id="dailogContent">
+        <PersonalInfo profileDetails={personalDetails}/>
       </DialogContent>
     </Dialog>
   );
