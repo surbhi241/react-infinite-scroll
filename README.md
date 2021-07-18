@@ -1,6 +1,11 @@
-A counter component in React.js, HTML and CSS ( without external frameworks such as bootstrap) 
-that can increment or decrement a counter upon clicking the plus and minus buttons.
+A Fully Reponsive React Infinite Scroll App for displaying users list view and detail view.You can Login to access the application using following credentials 
+UserName: foo
+Pwd: bar
+This Application is build using
+React Js Web and Mobile Development
+MaterilaUi: https://material-ui.com/
+CSS3
 
-You can catch me on #LinkedIn https://www.linkedin.com/in/surbhi-soni-038031b1/
+You can catch me on #LinkedIn https://www.linkedin.com/in/surbhi-soni241/
 
-[Live Demo](https://surbhi241.github.io/react-counter/).
+Application [Live Demo] using Gh-Pages (https://surbhi241.github.io/react-infinite-scroll/).
