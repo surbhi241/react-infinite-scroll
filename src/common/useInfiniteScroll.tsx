@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "./axios";
+import axios from "../axios";
 const RESULT_LIMIT = 20;
 
 const useInfiniteScroll = (pageNumber: number) => {
@@ -27,7 +27,7 @@ const useInfiniteScroll = (pageNumber: number) => {
             setError(true);
         })
     }, [pageNumber])
-    return { user , loading, error }
+    return { user , loading, error , hasMore}
 }
 
 export default useInfiniteScroll;

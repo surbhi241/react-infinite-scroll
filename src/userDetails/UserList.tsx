@@ -1,7 +1,7 @@
 import { CircularProgress, Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import axios from "../axios";
-import useInfiniteScroll from "../useInfiniteScroll";
+import useInfiniteScroll from "../common/useInfiniteScroll";
 import UserCard from "./UserCard";
 
 const useStyles = makeStyles((theme) => ({
