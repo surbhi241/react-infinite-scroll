@@ -1,7 +1,6 @@
-import { CircularProgress, Grid, makeStyles, Paper } from "@material-ui/core";
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import axios from "../axios";
-import useInfiniteScroll from "../common/useInfiniteScroll";
+import { CircularProgress, makeStyles, Paper } from "@material-ui/core";
+import React, { useState, useRef, useCallback } from "react";
+import useInfiniteScroll from "../useInfiniteScroll";
 import UserCard from "./UserCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,12 +42,12 @@ const UserList = () => {
     
     return(
         <div className={classes.root}>  
-            <Paper>
-                {user instanceof Array ? user.map(item => <UserCard userDetails={item}  key={item.login.uuid} />) : <p>No Data</p>}
+            {!error ? <Paper>
+                {user instanceof Array ? user.map(item => <UserCard userDetails={item}  key={item.login.uuid} isViewRequired={true}/>) : <p>No Data</p>}
                 <div ref={observeNode}>
                     <CircularProgress />
                 </div>
-            </Paper>
+            </Paper> : "Error Fetchig Data, Please refresh the page"}
         </div>
     )
 }

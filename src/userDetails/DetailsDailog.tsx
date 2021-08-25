@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createStyles, DialogContent, Grid, makeStyles } from "@material-ui/core";
+import { createStyles, DialogContent, makeStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import { DialogTitle } from "../common/DailogTitle";
-import UserCard from "./UserCard";
+import PersonalInfo from "../common/PersonalInfo";
 
 export const useStyles = makeStyles((theme) => createStyles({
+      dailogContainer:{
+        maxHeight: '87vh',
+        overflow: 'auto',
+        color: "rgb(63, 81, 181)",
+      },
       dailogTitle: {
-        paddingTop: "20px"
+        paddingTop: "20px",
       },
       dialogHead: {
         height: "18px",
-        fontSize: "14px",
         fontWeight: 600,
         lineHeight: 1.29,
         letterSpacing: "normal",
-        color: "#32325d"
+        color: "#32325d",
+        fontSize: "18px",
       },
-      wh_16: {
-        width: "16px !important",
-        height: "16px !important"
-      }
 }));
 
 export interface DetailsDailogProps {
@@ -27,12 +28,12 @@ export interface DetailsDailogProps {
   setOpenDialog: any;
   openDialog: any;
 }
-export const DetailsDailog = ({
+const DetailsDailog = ({
   dialogDetails,
   setOpenDialog,
   openDialog,
 }: DetailsDailogProps) => {
-  const { head, userDetails } = dialogDetails;
+  const { head, personalDetails } = dialogDetails;
   const classes = useStyles();
   return (
     <Dialog
@@ -40,6 +41,7 @@ export const DetailsDailog = ({
       aria-labelledby="dialog-container"
       open={openDialog}
       test-dataid="dialog"
+      className={classes.dailogContainer}
     >
       <DialogTitle
         id="dialog-title"
@@ -48,11 +50,11 @@ export const DetailsDailog = ({
       >
         {head}
       </DialogTitle>
-      <DialogContent>
-        <Grid container item xs={12}>
-          <UserCard userDetails={userDetails}/>
-        </Grid>
+      <DialogContent id="dailogContent">
+        <PersonalInfo profileDetails={personalDetails}/>
       </DialogContent>
     </Dialog>
   );
 };
+
+export default DetailsDailog;

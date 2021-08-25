@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, IconButton, Typography, Button, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, makeStyles, Grid } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
+      marginLeft: theme.spacing(2),
     },
     stickyHeader: {
       position: "fixed",
@@ -26,16 +26,28 @@ const Header = () => {
     const classes = useStyles();
     const handleLogout = () => {
         localStorage.setItem("user",JSON.stringify({}))
-        history.push("/login");
+        history.push("/");
     }
     return(
         <>
             <AppBar position="static" className={classes.stickyHeader}>
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                       User List
-                    </Typography>
-                    <Button color="inherit" className={classes.btnContained} variant="contained" onClick={handleLogout}>Logout</Button>
+                  <Grid container>
+                    <Grid item xs={6} container justifyContent="flex-start">
+                      <Typography variant="h6" className={classes.title}>
+                        User List
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6} container justifyContent="flex-end">
+                      <Button color="inherit" 
+                      className={classes.btnContained}
+                      variant="contained"
+                      onClick={handleLogout}
+                      >
+                        Logout
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Toolbar>
             </AppBar>
         </>
